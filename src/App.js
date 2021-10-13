@@ -1,14 +1,23 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
 import Post from './Post'
 import './App.css';
+import { db } from './firebase_app.js'
 
 function App() {
 
-  const [posts,setPosts] = useState([
-     
-  ]);
+  const [posts,setPosts] = useState([]);
+  console.log('db',db.collection('posts'))
 
+  useEffect(()=>{
+    db.collection('posts').onSnapshot(snapshot=>{
+      setPosts(snapshot.docs.map(doc=>({
+        id:doc.id,
+        post: doc.data()
+      })))
+    })
+  },[ ])
 
+console.log('posts',posts)
 
   return (
     <div className="App">
@@ -20,10 +29,12 @@ function App() {
         ></img>
       </div>
       <h1>HEADER</h1>
-      <Post username="Goutham" caption="It Works" imageUrl='https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png'/>
-      <Post username="Preetham" caption="Super Cool" imageUrl='https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png'/>
-      <Post username="Sharath" caption="Hows It????" imageUrl='https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png'/>
-      <Post username="Pranika" caption="My Pic" imageUrl='https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png'/>
+      {
+        posts.map(({id,post})=>(
+          <Post key={id}  username={post.username} caption={post.caption} imageUrl={post.imageUrl}/>
+        ))
+      }
+      
     </div>
   );
 }
