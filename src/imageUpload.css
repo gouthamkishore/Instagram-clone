@@ -8,9 +8,25 @@
     margin-bottom: 10px;
     background-color: white;
     border-top: 1px solid lightgray;
-    /* position: fixed;
-    bottom:0; */
+    position: sticky;
+    bottom:0;
 }
 .imageUplaod_progress{
     width: 100%;
+    margin-bottom: 5px;
+}
+.imageUpload_captionHolder{
+    margin-bottom: 5px;
+}
+.imageUpload_button{
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    color:#6082a3;
+    height: 30px;
+    width: 70px;
+    background-color: transparent;
+    border: 1px solid lightgray;
+    margin: auto;
+    margin-bottom: 10px;
 }

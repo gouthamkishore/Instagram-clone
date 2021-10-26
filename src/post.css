@@ -31,6 +31,7 @@
     border-top: 1px solid lightgray;
 }
 .post_button{
+    cursor: pointer;
     flex:0;
     border: none;
     color:#6082a3;
