@@ -9,6 +9,20 @@
   padding: 20px;
   object-fit: contain;
   border-bottom: 1px solid lightgray;
+  display: flex;
+  justify-content: space-between;
+}
+.app_headerImage{
+  object-fit: contain;
+}
+.app_posts{
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  
+}
+.app_postsright{
+  margin-left: 25px;
 }
 .app_signup{
   display: flex;
