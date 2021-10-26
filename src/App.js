@@ -213,7 +213,7 @@ function App() {
       </div>
 
       {/*caption input */}
-      {user?.displayName? (<ImageUpload username={user.displayName} />):(<h3>Sorry you need to login to upload images</h3>)}
+      {user?.displayName&&(<ImageUpload username={user.displayName} />)}
 
     </div>
   );
