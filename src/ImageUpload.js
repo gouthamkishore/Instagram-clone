@@ -6,6 +6,7 @@ import './imageUpload.css'
 
 function ImageUpload({ username }) {
     const [caption,setCaption]=useState('');
+    const [url,setUrl]=useState('')
     const [progress,setProgress]=useState(0);
     const [image,setImage]=useState(null);
 
@@ -34,20 +35,21 @@ function ImageUpload({ username }) {
                 storage.ref('images')
                     .child(image.name)
                     .getDownloadURL()
-                    .then(url => {
+                    .then((url) => {
+                        setUrl(url);
                         //post image inside db
                         db.collection("posts").add({
                             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                             caption: caption,
                             imageUrl: url,
                             username: username,
-
                         });
 
-
-                        setCaption(" ");
+                        setCaption("");
                         setProgress(0);
                         setImage(null);
+
+
                         console.log(caption);
                         console.log(image);
                         console.log(progress);
@@ -55,11 +57,12 @@ function ImageUpload({ username }) {
                     })
             }
         )
+
     }
     return (
         <div className={"imageUpload"}>
             <progress className={'imageUplaod_progress'} value={progress} max="100"></progress>
-            <input className={'imageUpload_captionHolder'} type="text" placeholder='Enter a Caption...' onChange={e => setCaption(e.target.value)} />
+            <input className={'imageUpload_captionHolder'} value={caption} type="text" placeholder='Enter a Caption...' onChange={e => setCaption(e.target.value)} />
             <input type="file" onChange={handleImage} />
             <button className={"imageUpload_button"} onClick={handleUpload}>Upload</button>
         </div>
