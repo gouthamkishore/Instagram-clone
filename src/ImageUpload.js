@@ -9,11 +9,24 @@ function ImageUpload({ username }) {
     const [url,setUrl]=useState('')
     const [progress,setProgress]=useState(0);
     const [image,setImage]=useState(null);
+    const [revoke,setRevoke]=useState("");
 
     const handleImage=(e) => {
-        if(e.target.files[0]) {
-            setImage(e.target.files[0])
+
+        if(e!="none") {
+            // e.target.files[0].name="";
+            // console.log("\n\n\n done done\n\n\n\n");
+            setRevoke("")
+        } else {
+            console.log("data==========>",e);
+            if(e.target.files[0]) {
+                setImage(e.target.files[0])
+            }
+            console.log("==============>",e.target.files[0].name)
+            setRevoke(e.target.files[0]);
         }
+
+
     }
     const handleUpload=(e) => {
         const uploadTask=storage.ref(`images/${image.name}`).put(image);
@@ -58,12 +71,16 @@ function ImageUpload({ username }) {
             }
         )
 
+        //e changes
+        //gdata.name="";
+
+        handleImage("none");
     }
     return (
         <div className={"imageUpload"}>
             <progress className={'imageUplaod_progress'} value={progress} max="100"></progress>
             <input className={'imageUpload_captionHolder'} value={caption} type="text" placeholder='Enter a Caption...' onChange={e => setCaption(e.target.value)} />
-            <input type="file" onChange={handleImage} />
+            <input type="file" onChange={handleImage} value={revoke} />
             <button className={"imageUpload_button"} onClick={handleUpload}>Upload</button>
         </div>
     )

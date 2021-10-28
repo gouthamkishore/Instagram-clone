@@ -18,6 +18,13 @@
 .app_headerImage{
   object-fit: contain;
 }
+.app_modal{
+  display: grid;
+  margin: auto;
+}
+.app_modal_style{
+  display: block;
+}
 .app_posts{
   padding: 20px;
   display: flex;
@@ -30,4 +37,6 @@
 .app_signup{
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

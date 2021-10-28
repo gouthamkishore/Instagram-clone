@@ -14,9 +14,10 @@ function getModalStyle() {
   const left=50;
 
   return {
+
     top: `${top}%`,
     left: `${left}%`,
-    trsnsform: `translate(~${top}%, ~${left}%)`
+    transform: `translate(-${top}%, -${left}%)`
   };
 }
 const useStyles=makeStyles((theme) => ({
@@ -26,7 +27,8 @@ const useStyles=makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(2,4,3)
+    padding: theme.spacing(2,4,3),
+
   }
 }))
 
@@ -95,13 +97,14 @@ function App() {
   // console.log('posts',posts)
 
   return (
-    <div className="App">
+    <div>
 
       {/*file picker */}
       {/*post buttton*/}
       <Modal
         open={open}
         onClose={() => setOpen(false)}
+        className={'app_modal'}
       >
         <div style={modalStyle} className={classes.paper}>
           <form className={'app_signup'}>
@@ -139,6 +142,7 @@ function App() {
       <Modal
         open={openSignin}
         onClose={() => setOpenSignin(false)}
+        className={'app_modal'}
       >
         <div style={modalStyle} className={classes.paper}>
           <form className={'app_signup'}>
@@ -193,7 +197,7 @@ function App() {
             ))
           }
         </div>
-        <div className="app_postsright">
+        {/* <div className="app_postsright">
           <InstagramEmbed
             url='https://www.instagram.com/p/Bl0VshFBT8h/'
             clientAccessToken='123|456'
@@ -207,7 +211,7 @@ function App() {
             onAfterRender={() => {}}
             onFailure={() => {}}
           />
-        </div>
+        </div> */}
 
 
       </div>
